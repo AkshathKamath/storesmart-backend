@@ -1,12 +1,54 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
+const multer = require("multer");
+const aws = require("aws-sdk");
+const config = require("../../config");
+
+//Config Multer
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 //Post req
-router.post("/", async (req, res) => {
+router.post("/", upload.single("file"), async (req, res) => {
   try {
     //Upload file to S3 bucket
+
+    //Config AWS
+    aws.config.update({
+      accessKeyId: config.awsAccessKeyId,
+      secretAccessKey: config.awsSecretAccessKey,
+      region: config.awsRegion,
+    });
+
+    const s3 = new aws.S3();
+
+    const file = req.file;
+
+    if (!file) {
+      return res.status(400).send("No file uploaded.");
+    }
+
+    // console.log(config.s3BucketName);
+    // console.log(config.awsAccessKeyId);
+
+    const params = {
+      Bucket: config.s3BucketName,
+      Key: file.originalname,
+      Body: file.buffer,
+      ContentType: file.mimetype,
+    };
+
+    s3.upload(params, (err, data) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send("Error uploading file.");
+      }
+    });
+
     console.log("File upload successful!");
+
+    //Use uploaded file to store cleaned df to Mongo Atlas
     const response = await axios.get("http://127.0.0.1:5000/show/clean");
     const data = response.data;
     console.log(data.msg);

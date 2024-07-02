@@ -13,7 +13,6 @@ const upload = multer({ storage: storage });
 router.post("/", upload.single("file"), async (req, res) => {
   try {
     //Upload file to S3 bucket
-
     //Config AWS
     aws.config.update({
       accessKeyId: config.awsAccessKeyId,
@@ -28,9 +27,6 @@ router.post("/", upload.single("file"), async (req, res) => {
     if (!file) {
       return res.status(400).send("No file uploaded.");
     }
-
-    // console.log(config.s3BucketName);
-    // console.log(config.awsAccessKeyId);
 
     const params = {
       Bucket: config.s3BucketName,
@@ -52,7 +48,7 @@ router.post("/", upload.single("file"), async (req, res) => {
     const response = await axios.get("http://127.0.0.1:5000/show/clean");
     const data = response.data;
     console.log(data.msg);
-    res.redirect("/analytics/form");
+    res.json(data.msg);
   } catch (err) {
     console.error("Error uploading file!", err);
     res.status(500).send("Internal Server Error");

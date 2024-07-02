@@ -16,7 +16,6 @@ router.get("/home", async (req, res) => {
   try {
     const response = await axios.get("http://127.0.0.1:5000/show/check");
     const data = response.data;
-    // res.render("home", { data });
     res.json(data);
   } catch (err) {
     console.error("Error rendering home page!", err);

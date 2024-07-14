@@ -21,12 +21,12 @@ app.use(express.urlencoded({ extended: true }));
 //Importing Routes
 const homeRouter = require("./routes/home");
 const formRouter = require("./routes/analytics_form");
-const analyticsRouter = require("./routes/analytics_handling");
+const timeFrameRouter = require("./routes/timeframe");
 
 //Using Routes
 app.use("/", homeRouter); // Root path
 app.use("/analytics/form", formRouter); //General analytics and form path
-app.use("/analytics", analyticsRouter); //To handle form submission
+app.use("/analytics/timeframe", timeFrameRouter);
 
 //--------------------Routes-------------------------//
 

@@ -22,11 +22,13 @@ app.use(express.urlencoded({ extended: true }));
 const homeRouter = require("./routes/home");
 const formRouter = require("./routes/analytics_form");
 const timeFrameRouter = require("./routes/timeframe");
+const storeWiseRouter = require("./routes/storewise");
 
 //Using Routes
 app.use("/", homeRouter); // Root path
 app.use("/analytics/form", formRouter); //General analytics and form path
 app.use("/analytics/timeframe", timeFrameRouter);
+app.use("/analytics/storewise", storeWiseRouter);
 
 //--------------------Routes-------------------------//
 

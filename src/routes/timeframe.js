@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
     );
     const data1 = response1.data;
     const response2 = await axios.get(
-      "https://storesmart-analyticsapi-production.up.railway.app/how/timeframe/1"
+      "https://storesmart-analyticsapi-production.up.railway.app/show/timeframe/1"
     );
     const data2 = JSON.parse(response2.data);
     const response3 = await axios.get(

@@ -4,13 +4,21 @@ const axios = require("axios");
 
 router.get("/", async (req, res) => {
   try {
-    const response1 = await axios.get("http://127.0.0.1:5000/show/size");
+    const response1 = await axios.get(
+      "https://storesmart-analyticsapi-production.up.railway.app/show/size"
+    );
     const data1 = response1.data;
-    const response2 = await axios.get("http://127.0.0.1:5000/show/timeframe/1");
+    const response2 = await axios.get(
+      "https://storesmart-analyticsapi-production.up.railway.app/how/timeframe/1"
+    );
     const data2 = JSON.parse(response2.data);
-    const response3 = await axios.get("http://127.0.0.1:5000/show/timeframe/2");
+    const response3 = await axios.get(
+      "https://storesmart-analyticsapi-production.up.railway.app/show/timeframe/2"
+    );
     const data3 = JSON.parse(response3.data);
-    const response4 = await axios.get("http://127.0.0.1:5000/show/timeframe/3");
+    const response4 = await axios.get(
+      "https://storesmart-analyticsapi-production.up.railway.app/show/timeframe/3"
+    );
     const data4 = JSON.parse(response4.data);
 
     const data = {

@@ -14,7 +14,9 @@ router.get("/", (req, res) => {
 
 router.get("/home", async (req, res) => {
   try {
-    const response = await axios.get("http://127.0.0.1:5000/show/check");
+    const response = await axios.get(
+      "https://storesmart-analyticsapi-production.up.railway.app/show/check"
+    );
     const data = response.data;
     res.json(data);
   } catch (err) {

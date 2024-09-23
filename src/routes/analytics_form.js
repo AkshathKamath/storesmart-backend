@@ -45,7 +45,9 @@ router.post("/", upload.single("file"), async (req, res) => {
     console.log("File upload successful!");
 
     //Use uploaded file to store cleaned df to Mongo Atlas
-    const response = await axios.get("http://analyticsapi:5000/show/clean");
+    const response = await axios.get(
+      "https://storesmart-analyticsapi-production.up.railway.app/show/clean"
+    );
     const data = response.data;
 
     res.json(data.msg);
@@ -58,13 +60,21 @@ router.post("/", upload.single("file"), async (req, res) => {
 //Get req
 router.get("/", async (req, res) => {
   try {
-    const response1 = await axios.get("http://127.0.0.1:5000/show/size");
+    const response1 = await axios.get(
+      "https://storesmart-analyticsapi-production.up.railway.app/show/size"
+    );
     const data1 = response1.data;
-    const response2 = await axios.get("http://127.0.0.1:5000/show/general/1");
+    const response2 = await axios.get(
+      "https://storesmart-analyticsapi-production.up.railway.app/show/general/1"
+    );
     const data2 = JSON.parse(response2.data);
-    const response3 = await axios.get("http://127.0.0.1:5000/show/general/2");
+    const response3 = await axios.get(
+      "https://storesmart-analyticsapi-production.up.railway.app/show/general/2"
+    );
     const data3 = JSON.parse(response3.data);
-    const response4 = await axios.get("http://127.0.0.1:5000/show/general/3");
+    const response4 = await axios.get(
+      "https://storesmart-analyticsapi-production.up.railway.app/show/general/3"
+    );
     const data4 = JSON.parse(response4.data);
 
     const data = {

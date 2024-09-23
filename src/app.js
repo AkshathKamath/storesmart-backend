@@ -6,12 +6,12 @@ const cors = require("cors");
 
 app.use(cors());
 
-//Setting views dir
+// Setting views dir
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 //Serving images (temporary)
-app.use(express.static(path.join(__dirname, "../public")));
+// app.use(express.static(path.join(__dirname, "../public")));
 
 //To parse url encoded form data
 app.use(express.urlencoded({ extended: true }));
